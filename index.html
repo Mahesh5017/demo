@@ -1,0 +1,401 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Home Control</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            /* background: linear-gradient(135deg, red,rgb(187, 136, 207), rgb(207, 204, 162),orange); */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #fff;
+            text-align: center;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        .btn {
+            display: inline-block;
+            margin: 15px;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            color: #fff;
+            background: #3498db;
+            border: none;
+            border-radius: 30px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background: #2980b9;
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+        .btn:active {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .btn:focus {
+            outline: none;
+        }
+        .btn.on {
+            background: #2ecc71;
+        }
+        .btn.off {
+            background: #e74c3c;
+        }
+        .status {
+            margin-top: 20px;
+            font-size: 1.2em;
+            font-weight: bold;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        .status.show {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Smart Home Control</h1>
+        <button id="light-on" class="btn on">Turn Light On</button>
+        <button id="light-off" class="btn off">Turn Light Off</button>
+        <br>
+        <button id="fan-on" class="btn on">Turn Fan On</button>
+        <button id="fan-off" class="btn off">Turn Fan Off</button>
+        <div id="status" class="status">Status: Ready</div>
+    </div>
+
+    <script>
+        function controlDevice(action) {
+            fetch('/' + action)
+                .then(response => response.text())
+                .then(data => {
+                    const statusDiv = document.getElementById('status');
+                    statusDiv.innerText = `Status: ${data}`;
+                    statusDiv.classList.add('show');
+                    setTimeout(() => {
+                        statusDiv.classList.remove('show');
+                    }, 2000);
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        document.getElementById('light-on').addEventListener('click', () => controlDevice('light_on'));
+        document.getElementById('light-off').addEventListener('click', () => controlDevice('light_off'));
+        document.getElementById('fan-on').addEventListener('click', () => controlDevice('fan_on'));
+        document.getElementById('fan-off').addEventListener('click', () => controlDevice('fan_off'));
+    </script>
+</body>
+</html> -->
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Smart Home Control</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #2980b9, #6dd5fa, #ffffff);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #fff;
+            text-align: center;
+        }
+        .login-container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+        }
+        input[type="text"], input[type="password"] {
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            width: 100%;
+            font-size: 1em;
+        }
+        .btn-login {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            color: #fff;
+            background: #3498db;
+            border: none;
+            border-radius: 30px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .btn-login:hover {
+            background: #2980b9;
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+        .btn-login:active {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .error-message {
+            color: #e74c3c;
+            font-size: 1.1em;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h1>Login</h1>
+        <form id="login-form">
+            <input type="text" id="username" placeholder="Username" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button type="submit" class="btn-login">Login</button>
+            <div id="error-message" class="error-message" style="display: none;">Invalid credentials. Please try again.</div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('login-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            fetch('/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username, password })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    window.location.href = '/control-panel';
+                } else {
+                    document.getElementById('error-message').style.display = 'block';
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    </script>
+</body>
+</html> -->
+
+
+
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>uyfvtg</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .box {
+            background-color: rgb(172, 189, 193);
+            border: solid black 2px;
+            height: 133px;
+            width: 49vw;
+        
+        }
+
+        .box1 {
+            background-color: orange;
+        }
+
+        .box2 {
+            background-color: white;
+            
+
+        }
+
+        .box3 {
+            background-color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box box1"></div>
+    <div class="box box2"></div>
+    <div class="box box3"></div>
+
+    
+</body>
+
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smartify Clone</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        header {
+            background-color: #0040ff;
+            padding: 20px;
+            color: white;
+            text-align: center;
+        }
+
+        nav {
+            background-color: #333;
+            overflow: hidden;
+        }
+
+        nav a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        nav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .hero-section {
+            background-color: #0040ff;
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            .background-div {
+            width: 100%;
+            height: 400px;
+            background-image: url('gwagon.webp');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        }
+
+        .hero-section h1 {
+            margin: 0;
+            font-size: 48px;
+        }
+
+        .hero-section p {
+            font-size: 24px;
+        }
+
+        .features {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
+            background-color: white;
+        }
+
+        .feature {
+            background-color: #e0e0e0;
+            padding: 20px;
+            width: 30%;
+            text-align: center;
+            border-radius: 10px;
+        }
+
+        .feature h3 {
+            margin-top: 0;
+        }
+
+        .footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Smartify Clone</h1>
+    </header>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <section class="hero-section">
+        <h1>Welcome to Smartify</h1>
+        <p>Your smart home solutions</p>
+  
+    
+    </section>
+
+    <section class="features">
+        <div class="feature">
+            <h3>Feature 1</h3>
+            <p>Detail about feature 1.</p>
+            
+        </div>
+        <div class="feature">
+            <h3>Feature 2</h3>
+            <p>Detail about feature 2.</p>
+        </div>
+        <div class="feature">
+            <h3>Feature 3</h3>
+            <p>Detail about feature 3.</p>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2024 Smartify Clone. All rights reserved.</p>
+    </footer>
+
+</body>
+
+</html>
