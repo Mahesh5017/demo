@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="nav-bar">
+            <div class="logo">IoT</div>
+            <nav>
+                    <a href="#">Home</a>
+                    <a href="#">Get started</a>
+                    <a href="#">About</a>
+                    <a href="#">Forum</a>
+            </nav>
+            <div class="login-button">
+                <button onclick="openLoginForm()">Login</button>
+            </div>
+        </div>
+    </header>
+
+    <section class="main-content">
+        <h2>where</h2>
+            <div class="create-account">
+            <p>Don't have an account?</p>
+            <a href="#">Create account →</a>
+        </div>
+    </section>
+
+    <section class="about">
+        <h3>About us</h3>
+        <p>Over 3 million free high-resolution images brought to you by the world's most generous community of photographers.</p>
+       
+    </section>
+
+    <div id="login-form" class="login-form">
+        <form action="#" method="POST">
+            <h2>Login to your account</h2>
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" required>
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+            <div class="remember-me">
+                <input type="checkbox" id="remember" name="remember">
+                <label for="remember">Remember me</label>
+            </div>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
